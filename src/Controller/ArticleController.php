@@ -10,7 +10,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-use Symfony\Component\Serializer\SerializerInterface;
 
 #[Route('/article', name: 'app_article')]
 class ArticleController extends AbstractController
@@ -19,13 +18,11 @@ class ArticleController extends AbstractController
     private  $depotRepository;
 
     private $normalizer;
-    private $serializer;
-    function __construct(ArticleRepository $articleRepository, NormalizerInterface $normalizer, SerializerInterface $serializer, DepotRepository $depotRepository)
+    function __construct(ArticleRepository $articleRepository, NormalizerInterface $normalizer, DepotRepository $depotRepository)
     {
         $this->articleRepository = $articleRepository;
         $this->depotRepository = $depotRepository;
         $this->normalizer = $normalizer;
-        $this->serializer = $serializer;
     }
 
     #[Route('/all', name: 'get_articles', methods: ['GET'])]
